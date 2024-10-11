@@ -30,3 +30,41 @@ C:\Users\trant\source\repos\Cafe_Management\Cafe_Management\obj\Debug\net6.0\ref
 C:\Users\trant\source\repos\Cafe_Management\Cafe_Management\obj\Debug\net6.0\Cafe_Management.pdb
 C:\Users\trant\source\repos\Cafe_Management\Cafe_Management\obj\Debug\net6.0\Cafe_Management.genruntimeconfig.cache
 C:\Users\trant\source\repos\Cafe_Management\Cafe_Management\obj\Debug\net6.0\ref\Cafe_Management.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\appsettings.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Cafe_Management.exe
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Cafe_Management.deps.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Cafe_Management.runtimeconfig.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Cafe_Management.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Cafe_Management.pdb
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.csproj.AssemblyReference.cache
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.AssemblyInfoInputs.cache
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.AssemblyInfo.cs
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.csproj.CoreCompileInputs.cache
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\staticwebassets\msbuild.Cafe_Management.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\staticwebassets\msbuild.build.Cafe_Management.props
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Cafe_Management.props
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Cafe_Management.props
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\scopedcss\bundle\Cafe_Management.styles.css
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.csproj.CopyComplete
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\refint\Cafe_Management.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.pdb
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.genruntimeconfig.cache
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\obj\Debug\net6.0\ref\Cafe_Management.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\System.Data.Odbc.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\runtimes\freebsd\lib\net6.0\System.Data.Odbc.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\runtimes\linux\lib\net6.0\System.Data.Odbc.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\runtimes\osx\lib\net6.0\System.Data.Odbc.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.Odbc.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Newtonsoft.Json.dll

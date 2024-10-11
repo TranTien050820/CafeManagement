@@ -8,12 +8,12 @@ namespace Cafe_Management.Infrastructure.Repositories
     {
         private readonly List<Product> _products = new()
         {
-            new Product { Id = 1, Name = "Product 1", Price = 10.0M },
-            new Product { Id = 2, Name = "Product 2", Price = 20.0M }
+            new Product {Product_ID = 1, Product_Name = "Product 1", Price = 10},
+            new Product { Product_ID = 2, Product_Name = "Product 2", Price = 20 }
         };
 
         public IEnumerable<Product> GetAllProducts() => _products;
 
-        public Product GetProductById(int id) => _products.Find(p => p.Id == id);
+        public Product GetProductById(int id) => _products.Find(p => p.Product_ID == id);
     }
 }
