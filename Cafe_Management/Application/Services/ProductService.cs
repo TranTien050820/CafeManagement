@@ -1,4 +1,5 @@
-﻿using Cafe_Management.Core.Entities;
+﻿using Cafe_Management.Code;
+using Cafe_Management.Core.Entities;
 using Cafe_Management.Core.Interfaces;
 using System.Collections.Generic;
 
@@ -13,7 +14,15 @@ namespace Cafe_Management.Application.Services
             _productRepository = productRepository;
         }
 
-        public IEnumerable<Product> GetAllProducts() => _productRepository.GetAllProducts();
-        public Product GetProductById(int id) => _productRepository.GetProductById(id);
+        public APIResult GetAllProducts(int? productId = null)
+        {
+            return _productRepository.GetAllProducts(productId); ;
+        }
+
+        public APIResult AddProducts(Product product)
+        {
+
+            return _productRepository.AddProducts(product); ;
+        }
     }
 }
