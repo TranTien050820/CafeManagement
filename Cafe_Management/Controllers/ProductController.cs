@@ -2,6 +2,7 @@
 using Cafe_Management.Code;
 using Cafe_Management.Core.Entities;
 using Cafe_Management.Core.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Data.Odbc;
 
 namespace Cafe_Management.Controllers
 {
+    [EnableCors("CorsApi")]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : ControllerBase

@@ -3,7 +3,13 @@ using Cafe_Management.Core.Interfaces;
 using Cafe_Management.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsApi",
+        builder => builder.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -13,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ProductService>();
 var app = builder.Build();
-
+app.UseCors("CorsApi");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
