@@ -26,11 +26,11 @@ namespace Cafe_Management.Infrastructure.Repositories
                     con.Open();
                     command.Connection = con;
 
-                    string query = "SELECT * FROM DBO.Product";
+                    string query = @"SELECT * FROM DBO.Product";
                     if (productId != null)
                     {
                         query += " WHERE Product_Id = ?";
-                        command.Parameters.AddWithValue("@ProductId", productId);
+                        command.Parameters.AddWithValue("ProductId", productId);
                     }
 
                     command.CommandText = query;

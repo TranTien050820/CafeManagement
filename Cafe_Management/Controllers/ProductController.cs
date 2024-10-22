@@ -15,9 +15,9 @@ namespace Cafe_Management.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly IProductRepository _productService;
+        private readonly ProductService _productService;
 
-        public ProductController(IProductRepository productService)
+        public ProductController(ProductService productService)
         {
             _productService = productService;
         }
