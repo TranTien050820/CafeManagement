@@ -7,8 +7,10 @@ namespace Cafe_Management.Core.Interfaces
     {
         APIResult GetAllProductCategories(int? categoryID);
 
-        APIResult AddProductCategory(ProductCategory category);
+        APIResult AddProductCategory(ProductCategory  category);
 
         APIResult UpdateProductCategoryName(ProductCategory category);
+
+
     }
 }

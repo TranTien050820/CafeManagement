@@ -39,5 +39,7 @@ namespace Cafe_Management.Controllers
             var result = _productCategoryService.UpdateProductCategoryName(category);
             return Ok(result);
         }
+
+       
     }
 }

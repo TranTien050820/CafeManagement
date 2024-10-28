@@ -8,22 +8,23 @@ using System.Data.Odbc;
 
 namespace Cafe_Management.Infrastructure.Repositories
 {
-    public class ProductCategoryRepository : IProductCategoryRepository 
+    public class ProductCategoryRepository : IProductCategoryRepository
     {
         private readonly string _connectionString = "DSN=CafeManagement";
 
         public APIResult GetAllProductCategories(int? categoryID)
         {
             APIResult result = new APIResult();
-            try {
+            try
+            {
                 using (OdbcConnection con = new OdbcConnection(_connectionString))
                 {
                     OdbcCommand command = new OdbcCommand();
                     con.Open();
-                    command.Connection= con;
+                    command.Connection = con;
 
                     string query = @"SELECT * FROM DBO.ProductCategory ";
-                    if(categoryID != null)
+                    if (categoryID != null)
                     {
                         query += "WHERE Category_Id = ?";
                         command.Parameters.AddWithValue("Category_Id", categoryID);
@@ -39,13 +40,13 @@ namespace Cafe_Management.Infrastructure.Repositories
                     result.Data = productCategories;
 
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 result.Status = 0;
                 result.Message = ex.Message;
             }
-            
+
             return result;
         }
 
@@ -58,7 +59,7 @@ namespace Cafe_Management.Infrastructure.Repositories
             {
                 OdbcCommand command = new OdbcCommand();
                 con.Open();
-                command.Connection= con;
+                command.Connection = con;
 
                 OdbcTransaction odbcTransact = null;
                 try
@@ -73,7 +74,7 @@ namespace Cafe_Management.Infrastructure.Repositories
                     command.Parameters.Clear();
                     command.Parameters.AddWithValue("Category_ID", (CategoryID + 1));
                     command.Parameters.AddWithValue("Category_Name", category.Category_Name);
-                    command.Parameters.AddWithValue("IsActive", category.IsActive);
+                    command.Parameters.AddWithValue("IsActive", true);
                     command.Parameters.AddWithValue("CreatedDate", DateTime.Now);
                     command.Parameters.AddWithValue("ModifiedDate", DateTime.Now);
                     command.ExecuteNonQuery();
@@ -91,7 +92,8 @@ namespace Cafe_Management.Infrastructure.Repositories
                     result.Data = categories;
 
                 }
-                catch(Exception ex) {
+                catch (Exception ex)
+                {
                     odbcTransact.Rollback();
                     result.Status = 0;
                     result.Message = ex.Message;
@@ -110,7 +112,7 @@ namespace Cafe_Management.Infrastructure.Repositories
         public APIResult UpdateProductCategoryName(ProductCategory category)
         {
             APIResult result = new APIResult();
-            using(OdbcConnection con = new OdbcConnection(_connectionString))
+            using (OdbcConnection con = new OdbcConnection(_connectionString))
             {
                 OdbcCommand command = new OdbcCommand();
                 con.Open();
@@ -120,15 +122,25 @@ namespace Cafe_Management.Infrastructure.Repositories
                 odbcTransact = con.BeginTransaction();
                 try
                 {
-                   
-                    command.Transaction = odbcTransact;
-                    command.CommandText = "UPDATE ProductCategory SET Category_Name = ?, ModifiedDate = ? WHERE Category_ID = ? ";
-                    command.Parameters.AddWithValue("Category_Name", category.Category_Name);
-                    
-                    command.Parameters.AddWithValue("ModifiedDate", DateTime.Now);
-                    command.Parameters.AddWithValue("Category_ID", category.Category_ID);
-                    command.ExecuteNonQuery();
 
+                    command.Transaction = odbcTransact;
+
+                    string query = "UPDATE ProductCategory SET ModifiedDate = '" + category.ModifiedDate + "' ";
+
+                    if (category.Category_Name != null)
+                    {
+                        query += " ,Category_Name = N'" + category.Category_Name + "' ";
+
+                    }
+                    if (category.IsActive != null)
+                    {
+                        query += " ,IsActive = '" + category.IsActive + "' ";
+                    }
+                    query += "  WHERE Category_ID = " + category.Category_ID;
+                    command.CommandText = query;
+
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
                     DataTable table = new DataTable("ProductCategory");
                     table.Load(command.ExecuteReader());
                     List<ProductCategory> categories = JsonConvert.DeserializeObject<List<ProductCategory>>(JsonConvert.SerializeObject(table));
