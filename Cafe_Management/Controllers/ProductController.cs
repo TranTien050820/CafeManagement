@@ -35,5 +35,13 @@ namespace Cafe_Management.Controllers
             var result = _productService.AddProducts(product);
             return Ok(result);
         }
+
+        [HttpPut]
+
+        public IActionResult UpdateProducts(Product product)
+        {
+            var result = _productService.UpdateProducts(product);
+            return Ok(result);
+        }
     }
 }

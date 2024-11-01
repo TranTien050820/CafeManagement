@@ -24,5 +24,10 @@ namespace Cafe_Management.Application.Services
 
             return _productRepository.AddProducts(product); ;
         }
+
+        public APIResult UpdateProducts(Product product)
+        {
+            return _productRepository.UpdateProducts(product);
+        }
     }
 }

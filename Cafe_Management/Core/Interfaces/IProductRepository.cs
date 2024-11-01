@@ -9,5 +9,7 @@ namespace Cafe_Management.Core.Interfaces
     {
         APIResult GetAllProducts(int? productId);
         APIResult AddProducts(Product product);
+
+        APIResult UpdateProducts(Product product);
     }
 }

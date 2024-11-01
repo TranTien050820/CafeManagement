@@ -26,6 +26,9 @@ builder.Services.AddScoped<WarehouseService>();
 // Product Category
 builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
 builder.Services.AddScoped<ProductCategoryService>();
+// Supplier
+builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
+builder.Services.AddScoped<SupplierService>();
 
 var app = builder.Build();
 app.UseCors("CorsApi");
