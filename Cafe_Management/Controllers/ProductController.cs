@@ -22,26 +22,41 @@ namespace Cafe_Management.Controllers
             _productService = productService;
         }
 
+
         [HttpGet]
-        public IActionResult GetAllProducts(int? productId = null)
+        public async Task<IActionResult> GetAllProducts()
         {
-            var result = _productService.GetAllProducts(productId);
-            return Ok(result);
+            var products = await _productService.GetAllProductsAsync();
+            return Ok(products);
         }
 
         [HttpPost]
-        public IActionResult AddProducts(Product product)
+        public async Task<IActionResult> AddProduct([FromBody] Product product)
         {
-            var result = _productService.AddProducts(product);
-            return Ok(result);
+            try
+            {
+              
+                await _productService.AddProductAsync(product);
+                return CreatedAtAction(nameof(GetAllProducts), new { id = product.Product_ID }, product);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-
         [HttpPut]
-
-        public IActionResult UpdateProducts(Product product)
+        public async Task<IActionResult> UpdateProduct([FromBody] Product product)
         {
-            var result = _productService.UpdateProducts(product);
-            return Ok(result);
+            try
+            {
+                await _productService.UpdateProductAsync(product);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
+
     }
 }

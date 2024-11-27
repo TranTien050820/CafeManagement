@@ -1,7 +1,12 @@
-﻿namespace Cafe_Management.Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Cafe_Management.Core.Entities
 {
+    [Table("SpoiledIngredients")]
     public class SpoiledIngredient
     {
+        [Key]
         public int Spoiled_ID { get; set; }
         public string Reason { get; set; }
         public int Staff_ID { get; set; }

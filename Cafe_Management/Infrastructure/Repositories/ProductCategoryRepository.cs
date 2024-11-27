@@ -1,7 +1,9 @@
 ﻿using Cafe_Management.Code;
 using Cafe_Management.Core.Entities;
 using Cafe_Management.Core.Interfaces;
+using Cafe_Management.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Data;
 using System.Data.Odbc;
@@ -10,158 +12,46 @@ namespace Cafe_Management.Infrastructure.Repositories
 {
     public class ProductCategoryRepository : IProductCategoryRepository
     {
-        private readonly string _connectionString = "DSN=CafeManagement";
+        private readonly AppDbContext _context;
 
-        public APIResult GetAllProductCategories(int? categoryID)
+        public ProductCategoryRepository(AppDbContext context)
         {
-            APIResult result = new APIResult();
-            try
-            {
-                using (OdbcConnection con = new OdbcConnection(_connectionString))
-                {
-                    OdbcCommand command = new OdbcCommand();
-                    con.Open();
-                    command.Connection = con;
+            _context = context;
+        }
 
-                    string query = @"SELECT * FROM DBO.ProductCategory ";
-                    if (categoryID != null)
-                    {
-                        query += "WHERE Category_Id = ?";
-                        command.Parameters.AddWithValue("Category_Id", categoryID);
-                    }
-
-                    command.CommandText = query;
-                    DataTable table = new DataTable("ProductCategory");
-                    table.Load(command.ExecuteReader());
-                    List<ProductCategory> productCategories = JsonConvert.DeserializeObject<List<ProductCategory>>(JsonConvert.SerializeObject(table));
-
-                    result.Status = 200;
-                    result.Message = "Successfully";
-                    result.Data = productCategories;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                result.Status = 0;
-                result.Message = ex.Message;
-            }
-
-            return result;
+        public async Task<IEnumerable<ProductCategory>> GetAllProductCategories()
+        {
+            return await _context.ProductCategory.ToListAsync();
         }
 
 
-        public APIResult AddProductCategory(ProductCategory category)
+        public async Task AddProductCategory(ProductCategory category)
         {
-            APIResult result = new APIResult();
+            category.CreatedDate = DateTime.Now;
+            category.ModifiedDate = DateTime.Now;
 
-            using (OdbcConnection con = new OdbcConnection(_connectionString))
-            {
-                OdbcCommand command = new OdbcCommand();
-                con.Open();
-                command.Connection = con;
+            // Tìm giá trị ProductID lớn nhất hiện tại
+            var maxId = await _context.ProductCategory.MaxAsync(p => (int?)p.Category_ID) ?? 0;
 
-                OdbcTransaction odbcTransact = null;
-                try
-                {
-                    odbcTransact = con.BeginTransaction();
-                    command.Transaction = odbcTransact;
-                    command.CommandText = "SELECT MAX(Category_ID) FROM DBO.ProductCategory";
-                    int CategoryID = (int)command.ExecuteScalar();
-
-                    command.CommandText = @"INSERT INTO ProductCategory(Category_ID,Category_Name, IsActive, CreatedDate, ModifiedDate)
-                                           VALUES(?,?,?,?,?)";
-                    command.Parameters.Clear();
-                    command.Parameters.AddWithValue("Category_ID", (CategoryID + 1));
-                    command.Parameters.AddWithValue("Category_Name", category.Category_Name);
-                    command.Parameters.AddWithValue("IsActive", true);
-                    command.Parameters.AddWithValue("CreatedDate", DateTime.Now);
-                    command.Parameters.AddWithValue("ModifiedDate", DateTime.Now);
-                    command.ExecuteNonQuery();
-
-                    string query = "SELECT * FROM DBO.ProductCategory WHERE Category_ID = " + (CategoryID + 1) + "";
-
-                    command.CommandText = query;
-                    DataTable table = new DataTable("ProductCategory");
-                    table.Load(command.ExecuteReader());
-                    List<ProductCategory> categories = JsonConvert.DeserializeObject<List<ProductCategory>>(JsonConvert.SerializeObject(table));
-
-                    odbcTransact.Commit();
-                    result.Status = 200;
-                    result.Message = "Successfully";
-                    result.Data = categories;
-
-                }
-                catch (Exception ex)
-                {
-                    odbcTransact.Rollback();
-                    result.Status = 0;
-                    result.Message = ex.Message;
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
-            return result;
+            // Tự động tăng ID cho sản phẩm mới
+            category.Category_ID = maxId + 1;
+            await _context.ProductCategory.AddAsync(category);
+            await _context.SaveChangesAsync();
         }
 
 
         [HttpPut("Update")]
 
-        public APIResult UpdateProductCategoryName(ProductCategory category)
+        public async Task UpdateProductCategory(ProductCategory category)
         {
-            APIResult result = new APIResult();
-            using (OdbcConnection con = new OdbcConnection(_connectionString))
+            var existingProductCategory = await _context.ProductCategory.FindAsync(category.Category_ID);
+            if (existingProductCategory != null)
             {
-                OdbcCommand command = new OdbcCommand();
-                con.Open();
-                command.Connection = con;
+                    existingProductCategory.Category_Name = category.Category_Name;
+                    existingProductCategory.IsActive = category.IsActive;
+                    await _context.SaveChangesAsync(); // Lưu thay đổi vào database
 
-                OdbcTransaction odbcTransact = null;
-                odbcTransact = con.BeginTransaction();
-                try
-                {
-
-                    command.Transaction = odbcTransact;
-
-                    string query = "UPDATE ProductCategory SET ModifiedDate = '" + category.ModifiedDate + "' ";
-
-                    if (category.Category_Name != null)
-                    {
-                        query += " ,Category_Name = N'" + category.Category_Name + "' ";
-
-                    }
-                    if (category.IsActive != null)
-                    {
-                        query += " ,IsActive = '" + category.IsActive + "' ";
-                    }
-                    query += "  WHERE Category_ID = " + category.Category_ID;
-                    command.CommandText = query;
-
-                    command.ExecuteNonQuery();
-                    command.Parameters.Clear();
-                    DataTable table = new DataTable("ProductCategory");
-                    table.Load(command.ExecuteReader());
-                    List<ProductCategory> categories = JsonConvert.DeserializeObject<List<ProductCategory>>(JsonConvert.SerializeObject(table));
-
-                    odbcTransact.Commit();
-                    result.Status = 200;
-                    result.Message = "Successfully";
-                    result.Data = categories;
-                }
-                catch (Exception ex)
-                {
-                    odbcTransact.Rollback();
-                    result.Status = 0;
-                    result.Message = ex.Message;
-                }
-                finally
-                {
-                    con.Close();
-                }
             }
-            return result;
         }
     }
 }

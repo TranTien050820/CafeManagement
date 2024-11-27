@@ -1,7 +1,12 @@
-﻿namespace Cafe_Management.Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Cafe_Management.Core.Entities
 {
+    [Table("Customers")]
     public class Customer
     {
+        [Key]
         public int Customer_Id { get; set; }
         public string Customer_Name { get; set; }
         public string Customer_Phone { get; set; }

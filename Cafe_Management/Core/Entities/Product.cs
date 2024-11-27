@@ -1,8 +1,13 @@
-﻿namespace Cafe_Management.Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Cafe_Management.Core.Entities
 {
+    [Table("Product")]
     public class Product
     {
-        public int? Product_ID { get; set; }
+        [Key]
+        public int Product_ID { get; set; }
         public string? Product_Name { get; set; }
         public int? Product_Category { get; set; }
         public int? Price { get; set; }

@@ -19,27 +19,42 @@ namespace Cafe_Management.Controllers
 
         [HttpGet]
 
-        public IActionResult GetAllProductCategories(int? categoryID)
+        public async Task<IActionResult> GetAllProductCategories()
         {
-            var result = _productCategoryService.GetAllProductCategories(categoryID);
+            var result = await _productCategoryService.GetAllProductCategories();
             return Ok(result);
         }
 
         [HttpPost]
 
-        public IActionResult AddProductCategory(ProductCategory category)
+        public async Task<IActionResult> AddProductCategory([FromBody] ProductCategory category)
         {
-            var result = _productCategoryService.AddProductCategory(category);
-            return Ok(result);
+            try
+            {
+
+                await _productCategoryService.AddProductCategory(category);
+                return CreatedAtAction(nameof(GetAllProductCategories), new { id = category.Category_ID }, category);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPut("Update")]
-
-        public IActionResult UpdateProductCategoryName(ProductCategory category) {
-            var result = _productCategoryService.UpdateProductCategoryName(category);
-            return Ok(result);
+        [HttpPut]
+        public async Task<IActionResult> UpdateProductCategory([FromBody] ProductCategory category)
+        {
+            try
+            {
+                await _productCategoryService.UpdateProductCategory(category);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
-       
+
     }
 }

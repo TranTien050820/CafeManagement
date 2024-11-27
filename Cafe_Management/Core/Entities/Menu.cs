@@ -1,7 +1,12 @@
-﻿namespace Cafe_Management.Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Cafe_Management.Core.Entities
 {
+    [Table("Menu")]
     public class Menu
     {
+        [Key]
         public int Menu_ID { get; set; }
         public string Menu_Name { get; set; }
         public bool IsActive { get; set; }

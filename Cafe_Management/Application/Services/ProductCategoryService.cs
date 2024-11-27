@@ -1,6 +1,7 @@
 ﻿using Cafe_Management.Code;
 using Cafe_Management.Core.Entities;
 using Cafe_Management.Core.Interfaces;
+using Cafe_Management.Infrastructure.Repositories;
 
 namespace Cafe_Management.Application.Services
 {
@@ -13,21 +14,23 @@ namespace Cafe_Management.Application.Services
             _productCategoryRepository = productCategoryRepository;
         }
 
-        public APIResult GetAllProductCategories(int? categoryID)
+        public async Task<IEnumerable<ProductCategory>> GetAllProductCategories()
         {
-            return _productCategoryRepository.GetAllProductCategories(categoryID);
+            return await _productCategoryRepository.GetAllProductCategories();
         }
 
-        public APIResult AddProductCategory(ProductCategory category)
+        public async Task AddProductCategory(ProductCategory category)
         {
-            return _productCategoryRepository.AddProductCategory(category);
+            await _productCategoryRepository.AddProductCategory(category);
         }
 
-        public APIResult UpdateProductCategoryName(ProductCategory category)
+ 
+
+        public async Task UpdateProductCategory(ProductCategory category)
         {
-            return _productCategoryRepository.UpdateProductCategoryName(category);
+            await _productCategoryRepository.UpdateProductCategory(category);
         }
 
-     
+
     }
 }

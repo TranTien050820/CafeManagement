@@ -1,7 +1,12 @@
-﻿namespace Cafe_Management.Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Cafe_Management.Core.Entities
 {
+    [Table("Cuppons")]
     public class Cuppon
     {
+        [Key]
         public int Cuppon_ID { get; set; }
         public string Cuppon_Name { get; set; }
         public double Disscount { get; set; }

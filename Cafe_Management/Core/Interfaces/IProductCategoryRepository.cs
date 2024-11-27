@@ -5,11 +5,12 @@ namespace Cafe_Management.Core.Interfaces
 {
     public interface IProductCategoryRepository
     {
-        APIResult GetAllProductCategories(int? categoryID);
+        Task<IEnumerable<ProductCategory>> GetAllProductCategories();
 
-        APIResult AddProductCategory(ProductCategory  category);
+       // Task<ProductCategory> GetProductCategoryById(int id);
+        Task AddProductCategory(ProductCategory  category);
 
-        APIResult UpdateProductCategoryName(ProductCategory category);
+        Task UpdateProductCategory(ProductCategory category);
 
 
     }

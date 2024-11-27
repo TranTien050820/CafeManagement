@@ -1,7 +1,12 @@
-﻿namespace Cafe_Management.Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Cafe_Management.Core.Entities
 {
+    [Table("Staffs")]
     public class Staff
     {
+        [Key]
         public int Staff_ID { get; set; }
         public int StaffGroup_ID { get; set; }
         public string Username { get; set; }

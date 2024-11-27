@@ -14,20 +14,26 @@ namespace Cafe_Management.Application.Services
             _productRepository = productRepository;
         }
 
-        public APIResult GetAllProducts(int? productId = null)
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return _productRepository.GetAllProducts(productId); ;
+            return await _productRepository.GetAllAsync();
         }
 
-        public APIResult AddProducts(Product product)
+        public async Task<Product?> GetProductByIdAsync(int id)
         {
+            return await _productRepository.GetProductByIdAsync(id);
+        }
+        public async Task AddProductAsync(Product product)
+        {
+            
 
-            return _productRepository.AddProducts(product); ;
+            await _productRepository.AddAsync(product);
         }
 
-        public APIResult UpdateProducts(Product product)
+        public async Task UpdateProductAsync(Product product)
         {
-            return _productRepository.UpdateProducts(product);
+            await _productRepository.UpdateAsync(product);
         }
+
     }
 }

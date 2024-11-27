@@ -1,7 +1,12 @@
-﻿namespace Cafe_Management.Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Cafe_Management.Core.Entities
 {
+    [Table("Recipe")]
     public class Receipt
     {
+        [Key]
         public int Receipt_ID { get; set; }
         public int Staff_ID { get; set; }
         public int TotalPrice { get; set; }
