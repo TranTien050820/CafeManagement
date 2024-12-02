@@ -118,6 +118,9 @@ builder.Services.AddScoped<IngredientCategoryService>();
 // Product Recipe
 builder.Services.AddScoped<IProductRecipeRepository, ProductRecipeRepository>();
 builder.Services.AddScoped<ProductRecipeService>();
+// Menu
+builder.Services.AddScoped<IMenuRepository, MenuRepository>();
+builder.Services.AddScoped<MenuService>();
 
 var app = builder.Build();
 app.UseCors("CorsApi");
