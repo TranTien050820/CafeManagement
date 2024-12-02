@@ -1,64 +1,4 @@
-//using Cafe_Management.Application.Services;
-//using Cafe_Management.Core.Interfaces;
-//using Cafe_Management.Infrastructure.Repositories;
-//using System;
 
-//var builder = WebApplication.CreateBuilder(args);
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("CorsApi",
-//        builder => builder.WithOrigins("http://localhost:3000")
-//            .AllowAnyHeader()
-//            .AllowAnyMethod());
-//});
-//// Add services to the container.
-
-
-//builder.Services.AddControllers();
-//// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
-////Product
-//builder.Services.AddScoped<IProductRepository, ProductRepository>();
-//builder.Services.AddScoped<ProductService>();
-//// Warehouse
-//builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
-//builder.Services.AddScoped<WarehouseService>();
-//// Product Category
-//builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
-//builder.Services.AddScoped<ProductCategoryService>();
-//// Supplier
-//builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
-//builder.Services.AddScoped<SupplierService>();
-//// Ingredient
-//builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
-//builder.Services.AddScoped<IngredientService>();
-//// Ingredient Category
-//builder.Services.AddScoped<IIngredientCategoryRepository, IngredientCategoryRepository>();
-//builder.Services.AddScoped<IngredientCategoryService>();
-//// Product Recipe
-//builder.Services.AddScoped<IProductRecipeRepository, ProductRecipeRepository>();
-//builder.Services.AddScoped<ProductRecipeService>();
-
-//var app = builder.Build();
-//app.UseCors("CorsApi");
-
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-
-//}
-
-//app.UseHttpsRedirection();
-
-//app.UseAuthorization();
-
-//app.MapControllers();
-
-//app.Run();
 
 
 using Cafe_Management.Application.Services;
@@ -121,6 +61,9 @@ builder.Services.AddScoped<ProductRecipeService>();
 // Menu
 builder.Services.AddScoped<IMenuRepository, MenuRepository>();
 builder.Services.AddScoped<MenuService>();
+// Product Image
+builder.Services.AddScoped<IProductImageRepository, ProductImageRepository>();
+builder.Services.AddScoped<ProductImageService>();
 
 var app = builder.Build();
 app.UseCors("CorsApi");

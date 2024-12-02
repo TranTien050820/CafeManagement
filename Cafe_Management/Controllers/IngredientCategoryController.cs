@@ -1,4 +1,5 @@
 ﻿using Cafe_Management.Application.Services;
+using Cafe_Management.Code;
 using Cafe_Management.Core.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,19 @@ namespace Cafe_Management.Controllers
         public async Task<IActionResult> GetAllIngredientCategories()
         {
             var ingredientCategories = await _ingredientCategoryService.GetAllIngredientCategories();
-            return Ok(ingredientCategories);
+            if (ingredientCategories != null && ingredientCategories.Any()) 
+            {
+                APIResult result = new APIResult
+                {
+                    Data = ingredientCategories,
+                    Message = "Successfully",
+                    Status = 200
+                };
+                return Ok(result);
+            }
+
+           
+            return NotFound(new APIResult { Message = "No ingredient category found", Status = 404 });
         }
 
         [HttpPost]
@@ -30,12 +43,25 @@ namespace Cafe_Management.Controllers
             {
 
                 await _ingredientCategoryService.AddIngredientCategory(ingredientCategory);
-                return CreatedAtAction(nameof(GetAllIngredientCategories), new { id = ingredientCategory.Ingredient_Category_ID }, ingredientCategory);
+                APIResult result = new APIResult
+                {
+                    Data = ingredientCategory, // Set the added product as data
+                    Message = "Successfully",
+                    Status = 200
+                };
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new APIResult
+                {
+                    Message = ex.Message,
+                    Status = 400
+                });
             }
+ 
+            
         }
         [HttpPut]
         public async Task<IActionResult> UpdateIngredientCategory([FromBody] IngredientCategory ingredientCategory)
@@ -43,13 +69,25 @@ namespace Cafe_Management.Controllers
             try
             {
                 await _ingredientCategoryService.UpdateIngredientCategory(ingredientCategory);
-                return NoContent();
+                APIResult result = new APIResult
+                {
+                    Data = ingredientCategory,
+                    Message = "Successfully added the product",
+                    Status = 200
+                };
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new APIResult
+                {
+                    Message = ex.Message,
+                    Status = 400
+                });
             }
         }
+
 
     }
 }
