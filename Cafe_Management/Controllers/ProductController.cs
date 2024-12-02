@@ -27,7 +27,21 @@ namespace Cafe_Management.Controllers
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await _productService.GetAllProductsAsync();
-            return Ok(products);
+
+            if (products != null && products.Any()) // Check if products is not null and contains items
+            {
+                APIResult result = new APIResult
+                {
+                    Data = products,
+                    Message = "Successfully",
+                    Status = 200
+                };
+                return Ok(result);
+            }
+
+            // If no products are found, return a NotFound or other relevant status
+            return NotFound(new APIResult { Message = "No products found", Status = 404 });
+
         }
 
         [HttpPost]
@@ -35,13 +49,27 @@ namespace Cafe_Management.Controllers
         {
             try
             {
-              
                 await _productService.AddProductAsync(product);
-                return CreatedAtAction(nameof(GetAllProducts), new { id = product.Product_ID }, product);
+
+                APIResult result = new APIResult
+                {
+                    Data = product, // Set the added product as data
+                    Message = "Successfully added the product",
+                    Status = 200
+                };
+
+                // Return the created result with the location of the new resource
+                return CreatedAtAction(nameof(GetAllProducts), new { id = product.Product_ID }, result);
+            
+
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new APIResult
+                {
+                    Message = ex.Message,
+                    Status = 400
+                });
             }
         }
         [HttpPut]
@@ -50,11 +78,22 @@ namespace Cafe_Management.Controllers
             try
             {
                 await _productService.UpdateProductAsync(product);
-                return NoContent();
+                APIResult result = new APIResult
+                {
+                    Data = product, // Set the added product as data
+                    Message = "Successfully added the product",
+                    Status = 200
+                };
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new APIResult
+                {
+                    Message = ex.Message,
+                    Status = 400
+                });
             }
         }
 

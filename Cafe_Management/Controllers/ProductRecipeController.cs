@@ -1,4 +1,5 @@
 ﻿using Cafe_Management.Application.Services;
+using Cafe_Management.Code;
 using Cafe_Management.Core.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -18,17 +19,72 @@ namespace Cafe_Management.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllRecipeOfProduct(int productID)
+        public async Task<IActionResult> GetAllRecipeByProductID(int id)
         {
-            var result = _productRecipeService.GetllRecipeOfProduct(productID);
-            return Ok(result);
+            var products = await _productRecipeService.GetAllRecipeByProductID(id);
+
+                APIResult result = new APIResult
+                {
+                    Data = products,
+                    Message = "Successfully get recipes " + id,
+                    Status = 200
+                };
+                return Ok(result);
+         
+
         }
 
         [HttpPost]
-        public IActionResult AddProductRecipe(ProductRecipe productRecipe)
+        public async Task<IActionResult> AddProductRecipe([FromBody] ProductRecipe productRecipe)
         {
-            var result = _productRecipeService.AddProductRecipe(productRecipe);
-            return Ok(result);
+            try
+            {
+                await _productRecipeService.AddProductRecipe(productRecipe);
+
+                APIResult result = new APIResult
+                {
+                    Data = productRecipe, // Set the added product as data
+                    Message = "Successfully added the product recipe",
+                    Status = 200
+                };
+
+                // Return the created result with the location of the new resource
+                return CreatedAtAction(nameof(AddProductRecipe), new { id = productRecipe.Recipe_ID }, result);
+
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new APIResult
+                {
+                    Message = ex.Message,
+                    Status = 400
+                });
+            }
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdateProductRecipe([FromBody] ProductRecipe productRecipe)
+        {
+            try
+            {
+                await _productRecipeService.UpdateProductRecipe(productRecipe);
+                APIResult result = new APIResult
+                {
+                    Data = productRecipe, // Set the added product as data
+                    Message = "Successfully added the product recipe",
+                    Status = 200
+                };
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new APIResult
+                {
+                    Message = ex.Message,
+                    Status = 400
+                });
+            }
         }
     }
 }

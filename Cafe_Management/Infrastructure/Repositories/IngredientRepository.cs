@@ -1,9 +1,5 @@
 ﻿using Cafe_Management.Code;
 using Cafe_Management.Core.Entities;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Data.Odbc;
-using System.Data;
 using Cafe_Management.Core.Interfaces;
 using Cafe_Management.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;

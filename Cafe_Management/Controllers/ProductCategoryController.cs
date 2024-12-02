@@ -1,4 +1,5 @@
 ﻿using Cafe_Management.Application.Services;
+using Cafe_Management.Code;
 using Cafe_Management.Core.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +22,20 @@ namespace Cafe_Management.Controllers
 
         public async Task<IActionResult> GetAllProductCategories()
         {
-            var result = await _productCategoryService.GetAllProductCategories();
-            return Ok(result);
+            var category = await _productCategoryService.GetAllProductCategories();
+            if (category != null && category.Any()) 
+            {
+                APIResult result = new APIResult
+                {
+                    Data = category,
+                    Message = "Successfully",
+                    Status = 200
+                };
+                return Ok(result);
+            }
+
+            // If no products are found, return a NotFound or other relevant status
+            return NotFound(new APIResult { Message = "No categories found", Status = 404 });
         }
 
         [HttpPost]
