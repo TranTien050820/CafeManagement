@@ -5,7 +5,8 @@ namespace Cafe_Management.Core.Interfaces
 {
     public interface IProductRecipeRepository
     {
-        APIResult GetAllRecipeOfProduct(int productId);
-        APIResult AddProductRecipe(ProductRecipe productRecipe);
+        Task<IEnumerable<ProductRecipe>> GetAllRecipeByProductID(int id);
+        Task AddProductRecipe(ProductRecipe recipe);
+        Task UpdateProductRecipe(ProductRecipe productRecipe);
     }
 }

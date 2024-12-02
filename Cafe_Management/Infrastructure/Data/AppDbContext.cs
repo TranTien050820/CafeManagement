@@ -23,6 +23,7 @@ namespace Cafe_Management.Infrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<ProductRecipe> ProductRecipe { get; set; }
+        public DbSet<ProductImage> ProductImage { get; set; }
         public DbSet<Receipt> Receipt { get; set; }
         public DbSet<ReceiptDetail> ReceiptDetail { get; set; }
         public DbSet<RecipeRaw> RecipeRaw { get; set; }
@@ -43,6 +44,20 @@ namespace Cafe_Management.Infrastructure.Data
             modelBuilder.Entity<Product>().HasKey(p => p.Product_ID);
             modelBuilder.Entity<Product>().ToTable("Product");
 
+            modelBuilder.Entity<ProductRecipe>().HasKey(pr => pr.Recipe_ID);
+
+            modelBuilder.Entity<ProductImage>().HasKey(pi => pi.ProductImage_ID);
+            modelBuilder.Entity<ProductImage>().ToTable("ProductImage");
+
+            modelBuilder.Entity<Product>()
+                        .HasMany(p=> p.ProductRecipe)
+                        .WithOne(pr => pr.Product)
+                        .HasForeignKey(pr => pr.Product_ID);
+
+            modelBuilder.Entity<Product>()
+                        .HasMany(p => p.ProductImage) 
+                        .WithOne(pi => pi.Product)
+                        .HasForeignKey(pi => pi.Product_ID);
             modelBuilder.Entity<ProductCategory>().HasKey(pc => pc.Category_ID);
             modelBuilder.Entity<ProductCategory>().ToTable("ProductCategory");
 
@@ -84,6 +99,7 @@ namespace Cafe_Management.Infrastructure.Data
 
             modelBuilder.Entity<Permission>().HasKey(p => p.Permission_ID);
             modelBuilder.Entity<Permission>().ToTable("Permissions");
+
 
             modelBuilder.Entity<Receipt>().HasKey(p => p.Receipt_ID);
             modelBuilder.Entity<Receipt>().ToTable("Receipt");

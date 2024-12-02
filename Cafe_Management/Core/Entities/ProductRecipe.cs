@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cafe_Management.Core.Entities
@@ -12,5 +13,7 @@ namespace Cafe_Management.Core.Entities
         public int? Ingredient_ID { get; set; }
         public double? Quantity { get; set; }
         public int? Unit { get; set; }
+        [JsonIgnore]
+        public Product Product { get; set; }
     }
 }

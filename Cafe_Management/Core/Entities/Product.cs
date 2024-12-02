@@ -13,7 +13,10 @@ namespace Cafe_Management.Core.Entities
         public int? Price { get; set; }
         public int? Point { get; set; }
         public bool? IsActive { get; set; }
+
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
+        public ICollection<ProductRecipe> ProductRecipe { get; set; }
+        public ICollection<ProductImage> ProductImage { get; set; }
     }
 }

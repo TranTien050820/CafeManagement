@@ -1,4 +1,5 @@
 ﻿using Cafe_Management.Application.Services;
+using Cafe_Management.Code;
 using Cafe_Management.Core.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,20 @@ namespace Cafe_Management.Controllers
         public async Task<IActionResult> GetAllIngredients()
         {
             var ingredients = await _ingredientService.GetAllIngredients();
-            return Ok(ingredients);
+            if (ingredients != null && ingredients.Any()) // Check if products is not null and contains items
+            {
+                APIResult result = new APIResult
+                {
+                    Data = ingredients,
+                    Message = "Successfully",
+                    Status = 200
+                };
+                return Ok(result);
+            }
+
+            // If no products are found, return a NotFound or other relevant status
+            return NotFound(new APIResult { Message = "No ingredients found", Status = 404 });
+
         }
 
         [HttpPost]
@@ -31,11 +45,25 @@ namespace Cafe_Management.Controllers
             {
 
                 await _ingredientService.AddIngredient(ingredient);
-                return CreatedAtAction(nameof(GetAllIngredients), new { id = ingredient.Ingredient_ID }, ingredient);
+                APIResult result = new APIResult
+                {
+                    Data = ingredient, // Set the added product as data
+                    Message = "Successfully added the ingredient",
+                    Status = 200
+                };
+
+                // Return the created result with the location of the new resource
+                return CreatedAtAction(nameof(AddIngredient), new { id = ingredient.Ingredient_ID }, result);
+
+
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new APIResult
+                {
+                    Message = ex.Message,
+                    Status = 400
+                });
             }
         }
         [HttpPut]
@@ -44,11 +72,22 @@ namespace Cafe_Management.Controllers
             try
             {
                 await _ingredientService.UpdateIngredient(ingredient);
-                return NoContent();
+                APIResult result = new APIResult
+                {
+                    Data = ingredient, 
+                    Message = "Successfully ",
+                    Status = 200
+                };
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new APIResult
+                {
+                    Message = ex.Message,
+                    Status = 400
+                });
             }
         }
 
