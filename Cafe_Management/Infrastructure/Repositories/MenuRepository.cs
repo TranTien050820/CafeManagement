@@ -67,5 +67,6 @@ namespace Cafe_Management.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
     }
 }

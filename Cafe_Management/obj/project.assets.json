@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "DelegateDecompiler/0.34.0": {
+        "type": "package",
+        "dependencies": {
+          "Mono.Reflection": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/DelegateDecompiler.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/DelegateDecompiler.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -544,6 +556,19 @@
           }
         }
       },
+      "Mono.Reflection/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Mono.Reflection.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Mono.Reflection.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -913,6 +938,22 @@
     }
   },
   "libraries": {
+    "DelegateDecompiler/0.34.0": {
+      "sha512": "blUx3XMP4lJynw2y34NrnHzrshF2YGOPirxVUhHnAT09L/LwQc8Q6szmNGFi9hLd9AcM4nVAmXIX2DDyqCfwLg==",
+      "type": "package",
+      "path": "delegatedecompiler/0.34.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "delegatedecompiler.0.34.0.nupkg.sha512",
+        "delegatedecompiler.nuspec",
+        "lib/net40/DelegateDecompiler.dll",
+        "lib/net45/DelegateDecompiler.dll",
+        "lib/netstandard2.0/DelegateDecompiler.dll",
+        "lib/netstandard2.1/DelegateDecompiler.dll"
+      ]
+    },
     "Humanizer.Core/2.8.26": {
       "sha512": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "type": "package",
@@ -1745,6 +1786,21 @@
         "version.txt"
       ]
     },
+    "Mono.Reflection/2.0.0": {
+      "sha512": "gipqt3dO1NsgM9wfUsQeNVLYmSskDfaN+muNQHLJYkCuYxx2bIp6gAA8j2Rp+Ey6YNHloZv+BJY56r9fl3tfew==",
+      "type": "package",
+      "path": "mono.reflection/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/Mono.Reflection.dll",
+        "lib/net40/Mono.Reflection.pdb",
+        "lib/netstandard2.0/Mono.Reflection.dll",
+        "lib/netstandard2.0/Mono.Reflection.pdb",
+        "mono.reflection.2.0.0.nupkg.sha512",
+        "mono.reflection.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -2395,6 +2451,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "DelegateDecompiler >= 0.34.0",
       "Microsoft.EntityFrameworkCore >= 6.0.36",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.36",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.36",
@@ -2404,19 +2461,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\trant\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\Cafe_Management.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\Documents\\GitHub\\CafeManagement\\Cafe_Management\\Cafe_Management.csproj",
       "projectName": "Cafe_Management",
-      "projectPath": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\Cafe_Management.csproj",
-      "packagesPath": "C:\\Users\\trant\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\obj\\",
+      "projectPath": "C:\\Users\\Asus\\Documents\\GitHub\\CafeManagement\\Cafe_Management\\Cafe_Management.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus\\Documents\\GitHub\\CafeManagement\\Cafe_Management\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\trant\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2424,6 +2481,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2436,12 +2494,21 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "DelegateDecompiler": {
+            "target": "Package",
+            "version": "[0.34.0, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.36, )"
@@ -2488,7 +2555,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

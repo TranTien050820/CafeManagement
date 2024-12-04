@@ -3,7 +3,7 @@ using Cafe_Management.Core.Entities;
 
 namespace Cafe_Management.Infrastructure.Data
 {
-    public class AppDbContext :DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -54,10 +54,6 @@ namespace Cafe_Management.Infrastructure.Data
                         .WithOne(pr => pr.Product)
                         .HasForeignKey(pr => pr.Product_ID);
 
-            modelBuilder.Entity<Product>()
-                        .HasMany(p => p.ProductImage) 
-                        .WithOne(pi => pi.Product)
-                        .HasForeignKey(pi => pi.Product_ID);
             modelBuilder.Entity<ProductCategory>().HasKey(pc => pc.Category_ID);
             modelBuilder.Entity<ProductCategory>().ToTable("ProductCategory");
 

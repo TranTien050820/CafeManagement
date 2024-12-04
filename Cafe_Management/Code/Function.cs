@@ -20,6 +20,7 @@ namespace Cafe_Management.Code
             return Expression.Lambda<Func<T, bool>>(
                 Expression.AndAlso(left, right), parameter);
         }
+        
     }
     public class ReplaceExpressionVisitor : ExpressionVisitor
     {

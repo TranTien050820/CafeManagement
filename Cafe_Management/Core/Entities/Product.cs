@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Cafe_Management.Core.Entities
 {
@@ -13,10 +14,11 @@ namespace Cafe_Management.Core.Entities
         public int? Price { get; set; }
         public int? Point { get; set; }
         public bool? IsActive { get; set; }
-
+        public string? Product_Image { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public ICollection<ProductRecipe> ProductRecipe { get; set; }
-        public ICollection<ProductImage> ProductImage { get; set; }
+
+        [JsonIgnore]
+        public ICollection<ProductRecipe>? ProductRecipe { get; set; }
     }
 }

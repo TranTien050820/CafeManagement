@@ -64,6 +64,9 @@ builder.Services.AddScoped<MenuService>();
 // Product Image
 builder.Services.AddScoped<IProductImageRepository, ProductImageRepository>();
 builder.Services.AddScoped<ProductImageService>();
+//Save Image 
+builder.Services.AddScoped<IImageRepository, SaveImageRepository>();
+builder.Services.AddScoped<ImageService>();
 
 var app = builder.Build();
 app.UseCors("CorsApi");
@@ -73,7 +76,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseCors("AllowAll");
