@@ -17,8 +17,7 @@ namespace Cafe_Management.Core.Entities
         public string? Product_Image { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-
-        [JsonIgnore]
-        public ICollection<ProductRecipe>? ProductRecipe { get; set; }
+        
+        public List<ProductRecipe>? ProductRecipe { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace Cafe_Management.Infrastructure.Repositories
         private readonly IImageRepository _imageRepository;
         private readonly IProductRecipeRepository _productRecipeRepository;
 
-        public ProductRepository(AppDbContext context, IImageRepository imageRepository,  IProductRecipeRepository productRecipeRepository)
+        public ProductRepository(AppDbContext context, IImageRepository imageRepository, IProductRecipeRepository productRecipeRepository)
         {
             _context = context;
             _imageRepository = imageRepository;
@@ -33,9 +33,11 @@ namespace Cafe_Management.Infrastructure.Repositories
 
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
+            List<ProductRecipe> ProductRecipes = _context.ProductRecipe.ToList();
             return await _context.Products
         .Select(p => new Product
         {
+
             Product_ID = p.Product_ID,
             Product_Name = p.Product_Name,
             Product_Category = p.Product_Category,
@@ -44,15 +46,9 @@ namespace Cafe_Management.Infrastructure.Repositories
             IsActive = p.IsActive,
             CreatedDate = p.CreatedDate,
             ModifiedDate = p.ModifiedDate,
-            ProductRecipe = p.ProductRecipe.Select(pr => new ProductRecipe
-            {
-                Recipe_ID = pr.Recipe_ID,
-                Ingredient_ID = pr.Ingredient_ID,
-                Quantity = pr.Quantity,
-                Unit = pr.Unit
-            }).ToList(),
+            ProductRecipe = ProductRecipes,
             Product_Image = p.Product_Image
-            }).ToListAsync();
+        }).ToListAsync();
         }
 
         public async Task AddAsync(Product product)
@@ -83,7 +79,7 @@ namespace Cafe_Management.Infrastructure.Repositories
                 product.Product_Image = "";
             }
 
-            if(product.ProductRecipe != null && product.ProductRecipe.Count > 0)
+            if (product.ProductRecipe != null && product.ProductRecipe.Count > 0)
             {
                 foreach (var recipe in product.ProductRecipe)
                 {
@@ -99,7 +95,7 @@ namespace Cafe_Management.Infrastructure.Repositories
         public async Task UpdateAsync(Product product)
         {
             var existingProduct = await _context.Products.FindAsync(product.Product_ID);
-            if (existingProduct != null )
+            if (existingProduct != null)
             {
                 if (product.IsActive != null)
                 {
@@ -134,7 +130,7 @@ namespace Cafe_Management.Infrastructure.Repositories
                            product.Product_ID.ToString(),
                            "Products"
                        );
-                    
+
                     if (saveImageResult.StartsWith("Error"))
                     {
                         throw new Exception(saveImageResult);
@@ -146,22 +142,22 @@ namespace Cafe_Management.Infrastructure.Repositories
 
                     foreach (var recipe in product.ProductRecipe)
                     {
-                        bool exists = currentProductRecipe.Any(r => r.Recipe_ID == recipe.Recipe_ID);
-                        if (exists == true) 
-                        { 
-                           await _productRecipeRepository.UpdateProductRecipe(recipe);
+                        bool exists = currentProductRecipe.Any(r => r.Ingredient_ID == recipe.Ingredient_ID);
+                        if (exists == true)
+                        {
+                            await _productRecipeRepository.UpdateProductRecipe(recipe);
                         }
                         else
                         {
                             await _productRecipeRepository.AddProductRecipe(recipe);
-                        }    
-                        
+                        }
+
                     }
                     //DELETE
                     var deleteProductRecipe = product.ProductRecipe.Where(itemA => !currentProductRecipe.Any(itemB => itemB.Ingredient_ID == itemA.Ingredient_ID)).ToList();
                     foreach (var recipe in deleteProductRecipe)
                     {
-                        //
+                        recipe.IsActive = false;
                     }
                 }
                 await _context.SaveChangesAsync();

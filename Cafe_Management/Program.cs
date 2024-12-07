@@ -61,9 +61,7 @@ builder.Services.AddScoped<ProductRecipeService>();
 // Menu
 builder.Services.AddScoped<IMenuRepository, MenuRepository>();
 builder.Services.AddScoped<MenuService>();
-// Product Image
-builder.Services.AddScoped<IProductImageRepository, ProductImageRepository>();
-builder.Services.AddScoped<ProductImageService>();
+
 //Save Image 
 builder.Services.AddScoped<IImageRepository, SaveImageRepository>();
 builder.Services.AddScoped<ImageService>();

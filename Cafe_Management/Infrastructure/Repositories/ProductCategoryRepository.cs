@@ -30,13 +30,13 @@ namespace Cafe_Management.Infrastructure.Repositories
             category.CreatedDate = DateTime.Now;
             category.ModifiedDate = DateTime.Now;
 
-            // Tìm giá trị ProductID lớn nhất hiện tại
-            var maxId = await _context.ProductCategory.MaxAsync(p => (int?)p.Category_ID) ?? 0;
-
-            // Tự động tăng ID cho sản phẩm mới
-            category.Category_ID = maxId + 1;
-            await _context.ProductCategory.AddAsync(category);
-            await _context.SaveChangesAsync();
+            if(category.Category_Name != null )
+            {
+                await _context.ProductCategory.AddAsync(category);
+                await _context.SaveChangesAsync();
+            }
+            
+           
         }
 
 

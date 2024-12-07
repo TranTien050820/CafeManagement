@@ -34,7 +34,7 @@ namespace Cafe_Management.Controllers
             try
             {
                 var products = await _productService.GetAllProductsAsync();
-                
+
 
                 if (products != null)
                 {
@@ -43,7 +43,7 @@ namespace Cafe_Management.Controllers
                     result.Status = 200;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.Message = ex.Message;
                 result.Status = 0;
@@ -56,7 +56,7 @@ namespace Cafe_Management.Controllers
         public async Task<IActionResult> AddProduct([FromBody] Product product)
         {
             APIResult result = new APIResult();
-            
+
             try
             {
                 var productCategorys = await _productCategoryService.GetAllProductCategories();
@@ -72,7 +72,7 @@ namespace Cafe_Management.Controllers
                 else
                 {
                     int categoryCount = productCategorys.Where(x => x.Category_ID == product.Product_Category).Count();
-                    if(categoryCount == 0)
+                    if (categoryCount == 0)
                     {
                         return BadRequest(new APIResult
                         {
@@ -81,9 +81,9 @@ namespace Cafe_Management.Controllers
                         });
                     }
                 }
-                if(product.ProductRecipe != null && product.ProductRecipe.Count > 0)
+                if (product.ProductRecipe != null && product.ProductRecipe.Count > 0)
                 {
-                    foreach(var productRecipe in product.ProductRecipe)
+                    foreach (var productRecipe in product.ProductRecipe)
                     {
                         int productRecipeCount = ingredients.Where(x => x.Ingredient_ID == productRecipe.Ingredient_ID).Count();
                         if (productRecipeCount == 0)
@@ -104,7 +104,7 @@ namespace Cafe_Management.Controllers
 
                 // Return the created result with the location of the new resource
                 return CreatedAtAction(nameof(GetAllProducts), new { id = product.Product_ID }, result);
-            
+
 
             }
             catch (Exception ex)

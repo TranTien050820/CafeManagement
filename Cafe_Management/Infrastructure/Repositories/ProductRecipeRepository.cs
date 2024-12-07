@@ -28,11 +28,7 @@ namespace Cafe_Management.Infrastructure.Repositories
         public async Task AddProductRecipe(ProductRecipe productRecipe)
         {
 
-            // Tìm giá trị ProductID lớn nhất hiện tại
-            var maxId = await _context.ProductRecipe.MaxAsync(p => (int?)p.Recipe_ID) ?? 0;
-
-            // Tự động tăng ID cho sản phẩm mới
-            productRecipe.Recipe_ID = maxId + 1;
+            
             await _context.ProductRecipe.AddAsync(productRecipe);
             await _context.SaveChangesAsync();
         }
@@ -41,11 +37,22 @@ namespace Cafe_Management.Infrastructure.Repositories
             var existingProductRecipe = await _context.ProductRecipe.FindAsync(productRecipe.Recipe_ID);
             if (existingProductRecipe != null)
             {
-            //        existingProductRecipe.Product_Name = product.Product_Name;
-            //        existingProduct.Price = product.Price;
-            //        existingProduct.Product_Category = product.Product_Category;
-            //        existingProduct.Point = product.Point;
-                    await _context.SaveChangesAsync(); // Lưu thay đổi vào database
+                if (productRecipe.IsActive != null)
+                {
+                    existingProductRecipe.IsActive = productRecipe.IsActive;
+                    existingProductRecipe.ModifiedDate = DateTime.Now;
+                }
+                if(productRecipe.Unit != null)
+                {
+                    existingProductRecipe.Unit= productRecipe.Unit;
+                    existingProductRecipe.ModifiedDate = DateTime.Now;
+                }
+                if(productRecipe.Quantity != null)
+                {
+                    existingProductRecipe.Quantity = productRecipe.Quantity;
+                    existingProductRecipe.ModifiedDate = DateTime.Now;
+                }
+                await _context.SaveChangesAsync();
                 
 
             }

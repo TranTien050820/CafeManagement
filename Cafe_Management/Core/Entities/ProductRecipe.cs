@@ -13,7 +13,8 @@ namespace Cafe_Management.Core.Entities
         public int? Ingredient_ID { get; set; }
         public double? Quantity { get; set; }
         public int? Unit { get; set; }
-        [JsonIgnore]
-        public Product Product { get; set; }
+        public bool? IsActive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
     }
 }

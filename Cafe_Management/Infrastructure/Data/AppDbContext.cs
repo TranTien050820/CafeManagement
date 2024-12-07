@@ -23,7 +23,6 @@ namespace Cafe_Management.Infrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<ProductRecipe> ProductRecipe { get; set; }
-        public DbSet<ProductImage> ProductImage { get; set; }
         public DbSet<Receipt> Receipt { get; set; }
         public DbSet<ReceiptDetail> ReceiptDetail { get; set; }
         public DbSet<RecipeRaw> RecipeRaw { get; set; }
@@ -43,25 +42,22 @@ namespace Cafe_Management.Infrastructure.Data
         {
             modelBuilder.Entity<Product>().HasKey(p => p.Product_ID);
             modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<Product>().Ignore(e => e.ProductRecipe);
 
             modelBuilder.Entity<ProductRecipe>().HasKey(pr => pr.Recipe_ID);
-
-            modelBuilder.Entity<ProductImage>().HasKey(pi => pi.ProductImage_ID);
-            modelBuilder.Entity<ProductImage>().ToTable("ProductImage");
-
-            modelBuilder.Entity<Product>()
-                        .HasMany(p=> p.ProductRecipe)
-                        .WithOne(pr => pr.Product)
-                        .HasForeignKey(pr => pr.Product_ID);
+            modelBuilder.Entity<ProductRecipe>().ToTable("ProductRecipe");
+            
 
             modelBuilder.Entity<ProductCategory>().HasKey(pc => pc.Category_ID);
             modelBuilder.Entity<ProductCategory>().ToTable("ProductCategory");
+           
 
             modelBuilder.Entity<BatchRecipe>().HasKey(b => b.BatchRecipe_ID);
             modelBuilder.Entity<BatchRecipe>().ToTable("BatchRecipe");
 
             modelBuilder.Entity<BatchRecipeDetail>().HasKey(bd => bd.Detail_ID);
             modelBuilder.Entity<BatchRecipeDetail>().ToTable("BatchRecipeDetail");
+
 
             modelBuilder.Entity<Cuppon>().HasKey(c => c.Cuppon_ID);
             modelBuilder.Entity<Cuppon>().ToTable("Cuppons");
