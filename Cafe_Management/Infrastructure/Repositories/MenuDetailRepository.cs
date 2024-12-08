@@ -15,8 +15,20 @@ namespace Cafe_Management.Infrastructure.Repositories
         }
         public async Task<IEnumerable<MenuDetail>> GetMenuDetail(Nullable<int> menuId)
         {
-            return await _context.MenuDetail
-                .Where(pi => pi.Menu_ID == menuId && pi.IsActive == true).ToListAsync();
+            var JoinData = await (from sg in _context.MenuDetail.Where(pi => pi.Menu_ID == menuId && pi.IsActive == true)
+            join sgp in _context.Products.Where(x => x.IsActive == true)
+            on sg.Product_ID equals sgp.Product_ID
+            select new MenuDetail
+            {
+                Menu_ID = sg.Menu_ID,
+                Product_ID = sg.Product_ID,
+                IsActive = sg.IsActive,
+                CreatedDate = sg.CreatedDate,
+                ModifiedDate = sg.ModifiedDate,
+                Product = sgp
+            }).ToListAsync();
+
+            return JoinData;
         }
         public async Task Create(List<MenuDetail> menuDetails)
         {

@@ -38,7 +38,7 @@ namespace Cafe_Management.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddMenu([FromBody] List<MenuDetail> MenuDetails)
+        public async Task<IActionResult> Create([FromBody] List<MenuDetail> MenuDetails)
         {
             APIResult result = new APIResult();
             try
