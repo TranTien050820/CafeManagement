@@ -198,3 +198,6 @@ C:\Users\Asus\Documents\GitHub\CafeManagement\Cafe_Management\obj\Debug\net6.0\C
 C:\Users\Asus\Documents\GitHub\CafeManagement\Cafe_Management\obj\Debug\net6.0\Cafe_Management.genruntimeconfig.cache
 C:\Users\Asus\Documents\GitHub\CafeManagement\Cafe_Management\obj\Debug\net6.0\ref\Cafe_Management.dll
 C:\Users\Asus\Documents\GitHub\CafeManagement\Cafe_Management\bin\Debug\net6.0\Cafe_Management.staticwebassets.runtime.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Cafe_Management.staticwebassets.runtime.json
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\DelegateDecompiler.dll
+C:\Users\trant\OneDrive\Máy tính\PROJECT\DOTNET\CafeManagement\Cafe_Management\bin\Debug\net6.0\Mono.Reflection.dll

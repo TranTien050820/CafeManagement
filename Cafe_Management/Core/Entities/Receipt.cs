@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cafe_Management.Core.Entities
 {
-    [Table("Recipe")]
+    [Table("Receipt")]
     public class Receipt
     {
         [Key]

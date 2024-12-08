@@ -1,4 +1,5 @@
 ﻿using Cafe_Management.Code;
+using Cafe_Management.Core.Entities;
 using Cafe_Management.Core.Interfaces;
 
 namespace Cafe_Management.Application.Services
@@ -13,9 +14,19 @@ namespace Cafe_Management.Application.Services
             _warehouseRepository = warehouseRepository;
         }
 
-        public APIResult GetAllWarehouses(int? warehouseId = null)
+        public async Task<IEnumerable<Warehouse>> GetWarehouse(Nullable<int> Warehouse_ID, Nullable<bool> IsActive)
         {
-            return _warehouseRepository.GetAllWarehouses(warehouseId); ;
+            return await _warehouseRepository.GetWarehouse(Warehouse_ID, IsActive);
+        }
+
+        public async Task AddWarehouse(Warehouse warehouse)
+        {
+            await _warehouseRepository.AddWarehouse(warehouse);
+        }
+
+        public async Task UpdateWarehouse(Warehouse warehouse)
+        {
+            await _warehouseRepository.UpdateWarehouse(warehouse);
         }
     }
 }

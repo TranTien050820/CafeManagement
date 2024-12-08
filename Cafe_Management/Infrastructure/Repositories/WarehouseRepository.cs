@@ -1,53 +1,70 @@
 ﻿using Cafe_Management.Code;
-using Cafe_Management.Controllers;
 using Cafe_Management.Core.Entities;
 using Cafe_Management.Core.Interfaces;
-using Newtonsoft.Json;
-using System.Data;
-using System.Data.Odbc;
+using Cafe_Management.Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
+using System.Linq.Expressions;
 
 namespace Cafe_Management.Infrastructure.Repositories
 {
     public class WarehouseRepository : IWarehouseRepository
     {
-        private readonly string _connectString = "DSN=CafeManagement";
+        private readonly AppDbContext _context;
 
-        public APIResult GetAllWarehouses(int? warehouseID)
+        public WarehouseRepository(AppDbContext context)
         {
-            APIResult result = new APIResult();
+            _context = context;
+        }
 
-            try
+        public async Task<IEnumerable<Warehouse>> GetWarehouse(Nullable<int> warehouseID , Nullable<bool> isActive)
+        {
+            List<Warehouse> warehouseList = null;
+            Expression<Func<Warehouse, bool>> _Filter = r => true;
+
+            if (warehouseID != null)
             {
-                using(OdbcConnection con = new OdbcConnection(_connectString))
+                _Filter = Function.AndAlso(_Filter, x => x.WareHouse_ID == warehouseID);
+            }
+
+            if (isActive != null)
+            {
+                _Filter = Function.AndAlso(_Filter, x => x.IsActive == isActive);
+            }
+
+            warehouseList = await _context.Warehouse.Where(_Filter).ToListAsync();
+
+            return warehouseList;
+        }
+
+        public async Task AddWarehouse(Warehouse warehouse)
+        {
+            warehouse.CreatedDate = DateTime.Now;
+            warehouse.ModifiedDate = DateTime.Now;
+
+            await _context.Warehouse.AddAsync(warehouse);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateWarehouse(Warehouse warehouse)
+        {
+            var existingWarehouse = await _context.Warehouse.FindAsync(warehouse.WareHouse_ID);
+            if (existingWarehouse != null)
+            {
+                if (warehouse.WareHouse_Name != null)
                 {
-                    OdbcCommand command = new OdbcCommand();
-                    con.Open();
-                    command.Connection= con;
-
-                    string query = "SELECT * FROM DBO.WareHouse";
-                    if(warehouseID != null)
-                    {
-                        query += @"WHERE WareHouse_ID = ?";
-                        command.Parameters.AddWithValue("WarehouseId", warehouseID);
-                    }
-
-                    command.CommandText= query;
-                    DataTable table= new DataTable("WareHouse");
-                    table.Load(command.ExecuteReader());
-                    List<Warehouse> warehouses = JsonConvert.DeserializeObject<List<Warehouse>>(JsonConvert.SerializeObject(table));
-
-                    result.Status = 200;
-                    result.Message = "Successfully";
-                    result.Data = warehouses;
-                    
+                    existingWarehouse.WareHouse_Name = warehouse.WareHouse_Name;
                 }
-            }
-            catch (Exception ex) {
-                result.Status = 0;
-                result.Message = ex.Message;
-            }
+                if (warehouse.IsActive != null)
+                {
+                    existingWarehouse.IsActive = warehouse.IsActive;
+                }
 
-            return result;
+                existingWarehouse.ModifiedDate = DateTime.Now;
+
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Cafe_Management.Core.Entities
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
 
-        [JsonIgnore]
-        public ICollection<Menu> Menu { get; set; }
+
     }
 }

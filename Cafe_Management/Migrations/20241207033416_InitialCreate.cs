@@ -538,34 +538,6 @@ namespace Cafe_Management.Migrations
                     table.PrimaryKey("PK_WareHouse", x => x.WareHouse_ID);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "MenuMenuDetail",
-                columns: table => new
-                {
-                    MenuDetailSetup_ID = table.Column<int>(type: "int", nullable: false),
-                    Menu_ID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MenuMenuDetail", x => new { x.MenuDetailSetup_ID, x.Menu_ID });
-                    table.ForeignKey(
-                        name: "FK_MenuMenuDetail_Menu_Menu_ID",
-                        column: x => x.Menu_ID,
-                        principalTable: "Menu",
-                        principalColumn: "Menu_ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MenuMenuDetail_MenuDetail_MenuDetailSetup_ID",
-                        column: x => x.MenuDetailSetup_ID,
-                        principalTable: "MenuDetail",
-                        principalColumn: "Setup_ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MenuMenuDetail_Menu_ID",
-                table: "MenuMenuDetail",
-                column: "Menu_ID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -599,9 +571,6 @@ namespace Cafe_Management.Migrations
 
             migrationBuilder.DropTable(
                 name: "Ingredients");
-
-            migrationBuilder.DropTable(
-                name: "MenuMenuDetail");
 
             migrationBuilder.DropTable(
                 name: "Permissions");

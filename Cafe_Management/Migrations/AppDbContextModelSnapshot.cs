@@ -531,8 +531,17 @@ namespace Cafe_Management.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Recipe_ID"), 1L, 1);
 
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("Ingredient_ID")
                         .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("Product_ID")
                         .HasColumnType("int");
@@ -542,15 +551,6 @@ namespace Cafe_Management.Migrations
 
                     b.Property<int?>("Unit")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                      .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Recipe_ID");
 
@@ -953,36 +953,6 @@ namespace Cafe_Management.Migrations
                     b.HasKey("WareHouse_ID");
 
                     b.ToTable("WareHouse", (string)null);
-                });
-
-            modelBuilder.Entity("MenuMenuDetail", b =>
-                {
-                    b.Property<int>("MenuDetailSetup_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Menu_ID")
-                        .HasColumnType("int");
-
-                    b.HasKey("MenuDetailSetup_ID", "Menu_ID");
-
-                    b.HasIndex("Menu_ID");
-
-                    b.ToTable("MenuMenuDetail");
-                });
-
-            modelBuilder.Entity("MenuMenuDetail", b =>
-                {
-                    b.HasOne("Cafe_Management.Core.Entities.MenuDetail", null)
-                        .WithMany()
-                        .HasForeignKey("MenuDetailSetup_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Cafe_Management.Core.Entities.Menu", null)
-                        .WithMany()
-                        .HasForeignKey("Menu_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

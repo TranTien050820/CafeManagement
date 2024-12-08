@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Y3WYEKd0caRvxWUjBn0Hd+5mj8MS7luiM+jXKKPiIs4=",
+  "Hash": "GIseXloOa1XLhfdqIjSIwPB6SsDZV+NWh8SRn0d3qSQ=",
   "Source": "Cafe_Management",
   "BasePath": "_content/Cafe_Management",
   "Mode": "Default",
@@ -10,30 +10,79 @@
     {
       "Name": "Cafe_Management\\wwwroot",
       "Source": "Cafe_Management",
-      "ContentRoot": "C:\\Users\\Asus\\Documents\\GitHub\\CafeManagement\\Cafe_Management\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\",
       "BasePath": "_content/Cafe_Management",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Asus\\Documents\\GitHub\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\0.jpg",
+      "Identity": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\0.jpg",
       "SourceId": "Cafe_Management",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Asus\\Documents\\GitHub\\CafeManagement\\Cafe_Management\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\",
       "BasePath": "_content/Cafe_Management",
       "RelativePath": "Image/Products/0.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Image\\Products\\0.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\1.jpg",
+      "SourceId": "Cafe_Management",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\",
+      "BasePath": "_content/Cafe_Management",
+      "RelativePath": "Image/Products/1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\Products\\1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\2.jpg",
+      "SourceId": "Cafe_Management",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\",
+      "BasePath": "_content/Cafe_Management",
+      "RelativePath": "Image/Products/2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\Products\\2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\3.jpg",
+      "SourceId": "Cafe_Management",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\",
+      "BasePath": "_content/Cafe_Management",
+      "RelativePath": "Image/Products/3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\Products\\3.jpg"
     }
   ]
 }

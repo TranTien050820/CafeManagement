@@ -1,9 +1,13 @@
 ﻿using Cafe_Management.Code;
+using Cafe_Management.Core.Entities;
 
 namespace Cafe_Management.Core.Interfaces
 {
     public interface IWarehouseRepository
     {
-        APIResult GetAllWarehouses(int? warehouseID);
+        Task<IEnumerable<Warehouse>> GetWarehouse(Nullable<int> warehouseID , Nullable<bool> isActive);
+
+        Task AddWarehouse(Warehouse warehouse);
+        Task UpdateWarehouse(Warehouse warehouse);
     }
 }

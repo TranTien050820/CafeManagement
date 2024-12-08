@@ -42,9 +42,6 @@ namespace Cafe_Management.Infrastructure.Repositories
             menu.CreatedDate = DateTime.Now;
             menu.ModifiedDate = DateTime.Now;
 
-            var maxId = await _context.Menu.MaxAsync(p => (int?)p.Menu_ID) ?? 0;
-
-            menu.Menu_ID = maxId + 1;
             await _context.Menu.AddAsync(menu);
             await _context.SaveChangesAsync();
         }

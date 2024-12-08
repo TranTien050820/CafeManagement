@@ -135,6 +135,7 @@ namespace Cafe_Management.Infrastructure.Repositories
                     {
                         throw new Exception(saveImageResult);
                     }
+                    product.Product_Image = saveImageResult;
                 }
                 if (product.ProductRecipe != null && product.ProductRecipe.Count > 0)
                 {
@@ -160,6 +161,7 @@ namespace Cafe_Management.Infrastructure.Repositories
                         recipe.IsActive = false;
                     }
                 }
+
                 await _context.SaveChangesAsync();
             }
         }

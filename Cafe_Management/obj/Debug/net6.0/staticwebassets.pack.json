@@ -1,8 +1,20 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Asus\\Documents\\GitHub\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\0.jpg",
+      "Id": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\0.jpg",
       "PackagePath": "staticwebassets\\Image\\Products\\0.jpg"
+    },
+    {
+      "Id": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\1.jpg",
+      "PackagePath": "staticwebassets\\Image\\Products\\1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\2.jpg",
+      "PackagePath": "staticwebassets\\Image\\Products\\2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\trant\\OneDrive\\Máy tính\\PROJECT\\DOTNET\\CafeManagement\\Cafe_Management\\wwwroot\\Image\\Products\\3.jpg",
+      "PackagePath": "staticwebassets\\Image\\Products\\3.jpg"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Cafe_Management.Microsoft.AspNetCore.StaticWebAssets.props",
