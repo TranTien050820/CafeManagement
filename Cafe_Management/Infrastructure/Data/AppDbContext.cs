@@ -74,6 +74,7 @@ namespace Cafe_Management.Infrastructure.Data
 
             modelBuilder.Entity<Ingredient>().HasKey(d => d.Ingredient_ID);
             modelBuilder.Entity<Ingredient>().ToTable("Ingredients");
+            modelBuilder.Entity<Ingredient>().Ignore(x=>x.RecipeRaws);
 
             modelBuilder.Entity<IngredientCategory>().HasKey(d => d.Ingredient_Category_ID);
             modelBuilder.Entity<IngredientCategory>().ToTable("Ingredient_Categories");

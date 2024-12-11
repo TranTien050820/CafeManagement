@@ -19,9 +19,9 @@ namespace Cafe_Management.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllIngredients()
+        public async Task<IActionResult> GetAllIngredients(Nullable<int> Type = null)
         {
-            var ingredients = await _ingredientService.GetAllIngredients();
+            var ingredients = await _ingredientService.GetAllIngredients(Type);
             if (ingredients != null && ingredients.Any()) // Check if products is not null and contains items
             {
                 APIResult result = new APIResult
